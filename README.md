@@ -139,6 +139,17 @@ matlab/main.m
 cfg.videoPath = fullfile('data','sample','New.mp4');
 ```
 
+## Input Data
+
+The sample input video can be downloaded from:
+
+https://drive.google.com/drive/folders/1caavfQ1jB3pULgvL6vLerRduDDI8Erzn?usp=drive_link
+
+After downloading, place the file in:
+
+```text
+data/sample/New.mp4
+
 6. Run the script.
 
 The program will:
