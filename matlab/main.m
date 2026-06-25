@@ -1,7 +1,13 @@
-clc; clear; close all;
+clc; 
+clear; 
+close all;
 
-cfg.videoPath      = 'C:\MATLAB Drive\MatHack\New.mp4';   
-cfg.outputRoot     = 'C:\MATLAB Drive\MatHack\results';      
+% Input video
+cfg.videoPath = fullfile('data','sample','New.mp4');
+
+% Output directory
+cfg.outputRoot = 'results';
+
 cfg.frameSize      = [416 416];      % Must match YOLO input (416x416)
 cfg.frameRate      = 25;             % Output video FPS
 cfg.scoreThreshold = 0.45;          % Confidence threshold (0-1)
@@ -19,7 +25,8 @@ cfg.labelDir  = fullfile(cfg.outputRoot, 'annotated');
 cfg.videoOut  = fullfile(cfg.outputRoot, 'labeled_output.avi');
 
 for d = {cfg.framesDir, cfg.labelDir}
-    if ~exist(d{1}, 'dir'), mkdir(d{1}); end
+    if ~exist(d{1}, 'dir'), 
+       mkdir(d{1}); end
 end
 
 fprintf('\n[INFO] Output root: %s\n', cfg.outputRoot);
@@ -164,15 +171,11 @@ close(vWriter);
 
 fprintf('[INFO] Video saved: %s\n', cfg.videoOut);
 
-
-fprintf('\n========================================\n');
-fprintf('  PIPELINE COMPLETE — SUMMARY\n');
-fprintf('========================================\n');
 fprintf('  Total frames processed : %d\n',   numFrames);
 fprintf('  Total detections       : %d\n',   sum(detCountLog));
 fprintf('  Avg detections/frame   : %.2f\n', mean(detCountLog));
 fprintf('  Max detections/frame   : %d\n',   max(detCountLog));
 fprintf('  Output video           : %s\n',   cfg.videoOut);
 fprintf('  Results MAT file       : %s\n',   fullfile(cfg.outputRoot,'detection_results.mat'));
-fprintf('========================================\n');
+
 
